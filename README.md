@@ -1,5 +1,5 @@
 
-## Projeto de intranet utilizando NextJS | GraphQl | Netlifly
+## Projeto de intranet utilizando NextJS | GraphQL | Netlifly
 
 First, run the development server:
 
