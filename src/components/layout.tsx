@@ -8,9 +8,9 @@ import {
   navLinkItem,
   navLinkText,
   siteTitle,
-} from "../layout.module.css";
+} from "../components/layout.module.css";
 
-const Layout = ({ }) => {
+const Layout = ({pageTitle, children }) => {
   
 
   return (
@@ -36,8 +36,8 @@ const Layout = ({ }) => {
         </ul>
       </nav>
       <main>
-        
-        
+      <h1 className={heading}>{pageTitle}</h1>
+        {children}        
         <Footer />
       </main>
     </div>
