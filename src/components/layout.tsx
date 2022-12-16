@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Footer } from "./Footer";
+import styles from '../components/layout.module.css'
 
 import {
   container,
