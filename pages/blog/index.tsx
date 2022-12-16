@@ -1,7 +1,7 @@
 
 import Link from 'next/link'
 import Layout from '../../src/components/layout'
-import BlogPost from './{mdx.fronmatter__slug}'
+import BlogPost from './[slug]'
 
 
 export async function getStaticProps(){
