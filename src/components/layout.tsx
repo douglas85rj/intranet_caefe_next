@@ -12,7 +12,7 @@ import { Footer } from "./Footer";
 //   siteTitle,
 // } from "../components/layout.module.css";
 
-const Layout = ({pageTitle, children }) => {
+const Layout = ({pageTitle, children }:{pageTitle:string; children:any}) => {
   
 
   return (
