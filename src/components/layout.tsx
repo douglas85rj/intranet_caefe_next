@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Footer } from "./Footer";
-import styles from '../components/layout.module.css'
+
 
 import {
   container,
@@ -16,6 +16,8 @@ const Layout = ({pageTitle, children }) => {
 
   return (
     <div className={container}>
+      <header className="siteTile"></header>
+  
       
       <nav>
         <ul className={navLinks}>
@@ -33,6 +35,7 @@ const Layout = ({pageTitle, children }) => {
             <Link href="/blog" className={navLinkText}>
               Blog
             </Link>
+            
           </li>
         </ul>
       </nav>
@@ -42,6 +45,7 @@ const Layout = ({pageTitle, children }) => {
         <Footer />
       </main>
     </div>
+  
   );
 };
 
