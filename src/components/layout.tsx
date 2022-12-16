@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Footer } from "./Footer";
 
 
+
 // import {
 //   container,
 //   heading,
@@ -38,6 +39,7 @@ const Layout = ({pageTitle, children }) => {
             
           </li>
         </ul>
+
       </nav>
       <main>
       <h1 className="heading">{pageTitle}</h1>
