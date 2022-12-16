@@ -1,30 +1,20 @@
 
 import Link from 'next/link'
 import Layout from '../../src/components/layout'
+import BlogPost from './{mdx.fronmatter__slug}'
 
 
-// const BlogPage = ({  }) => {
-//   return (
-//     <Layout pageTitle="Noticias">
-//       {
-//         (
-//           <article key={}>
-//             <h2>
-//               <Link href={`/blog/${}`}>
-//                 {}
-//               </Link>
-//             </h2>
-//             <p>Posted: {}</p>
-//             <p>{}</p>
-//           </article>
-//         ))
-//       }
-//     </Layout>
-//   )
-// }
+export async function getStaticProps(){
+    const res = await fetch(
+        `https://webservices.jumpingcrab.com/posts`
+    )
+    const posts = await res.json()
 
+    return{
+        props: {
+            posts,
+        },
+    }
+}
 
-
-export const Head = () => "Noticias" ;
-
-// export default BlogPage;
+export default BlogPost;
