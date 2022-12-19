@@ -27,7 +27,7 @@ export function SignInForm(){
     const disabled = validation?.success === false;
 
     return (
-        <Layout pageTitle="Cadastro de usuário">
+        <Layout pageTitle="Área do colaborador">
     <form noValidate className="signup-form">
    
         <h1>Login</h1> 
