@@ -1,6 +1,6 @@
 import Layout from "src/components/layout";
 import { useZorm } from "react-zorm";
-import { userSchema } from "../components/schemas/userSchema";
+import { userSchema, UserSchema } from "../components/schemas/userSchema";
 import {z} from "zod";
 import axios from "axios";
 import useAxios from "axios-hooks";
@@ -19,10 +19,22 @@ path:['confirmPassword'],
 
 export function SignUpForm(){
 
+    const [{},execute] = useAxios  <UserSchema, UserSchema>(
+      
+        {
+     url:   '/api/sgnup',
+     method: 'POST'
+    },{
+        manual:true,
+    });
+
     const{ref, fields, errors,validation} = useZorm("signup",signupSchema,{
         onValidSubmit(event){
             event.preventDefault();
-            console.log(event.data, undefined, 2);
+            execute ({
+data: event.data,
+
+            })
         }
     });
 

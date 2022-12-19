@@ -46,4 +46,6 @@ export const userSchema = z.object({
     surname,
     email,
     password,
-})
+});
+
+export type UserSchema = z.infer<typeof userSchema>;
