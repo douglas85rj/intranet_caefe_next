@@ -1,17 +1,26 @@
 import Layout from "src/components/layout";
+import { useZorm } from "react-zorm";
+import { userSchema } from "./schemas/userSchemas";
 
 
 export function SignUpForm(){
 
+    const{ref, fields, errors} = useZorm("signup",userSchema,{
+        onValidSubmit(event){
+            event.preventDefault();
+            console.log(event.data, undefined, 2);
+        }
+    });
     return (
         <Layout pageTitle="Cadastro de usuário">
     <form noValidate className="signup-form">
    
         <h1>Criar conta</h1> 
-<input type="text" placeholder = "Nome" className="signup-field"/>
-<input type="text" placeholder = "Sobrenome" className="signup-field"/>
-<input type="email" placeholder = "Email" className="signup-field"/>
-<input type="password" placeholder = "Senha" className="signup-field"/>
+<input type="text" placeholder = "Nome" className="signup-field" name={fields.name()}/>
+{errors.name((error)=>(<ErrorMessage message={error.message}/>))}
+<input type="text" placeholder = "Sobrenome" className="signup-field" name={fields.surname()}/>
+<input type="email" placeholder = "Email" className="signup-field" name={fields.email()}/>
+<input type="password" placeholder = "Senha" className="signup-field" name={fields.password()}/>
 <input type="password" placeholder = "Confirmar Senha" className="signup-field"/>
 
 <button type="submit" className="signup-submit">Criar conta</button>
@@ -59,3 +68,17 @@ padding:16px;
     </Layout>
     );
 }
+
+function ErrorMessage({ message }: { message: string }) {
+    return (
+      <span className="error">
+        {message}
+        <style jsx>{`
+          .error {
+            color: #f11212;
+            font-size: 10px;
+          }
+        `}</style>
+      </span>
+    );
+  }
