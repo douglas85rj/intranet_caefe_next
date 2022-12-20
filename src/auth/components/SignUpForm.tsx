@@ -10,6 +10,8 @@ import { passwordSchema } from "src/user/schemas/base/passwordSchema";
 import { LoadingIndicator } from "src/components/LoadingIndicator";
 import { allowedProviders } from "../allowedProviders";
 import { signIn } from "next-auth/react";
+import Layout from "src/components/layout";
+
 
 const texts = {
   title: "Criar conta",
@@ -81,8 +83,9 @@ export function SignUpForm() {
   const disabled = validation?.success === false || loading;
 
   return (
+    <Layout pageTitle="Criar conta">
     <form noValidate className="signup-form" ref={ref}>
-      <h1 className="signup-title">{texts.title}</h1>
+      <h1 className="signup-title">{}</h1>
       <input
         type="text"
         placeholder="Nome"
@@ -139,6 +142,7 @@ export function SignUpForm() {
           texts.submit
         )}
       </button>
+     
       <style jsx>{`
         .signup-form {
           max-width: 600px;
@@ -190,6 +194,7 @@ export function SignUpForm() {
         }
       `}</style>
     </form>
+    </Layout>
   );
 }
 
