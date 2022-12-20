@@ -3,6 +3,7 @@ import { Footer } from "./Footer";
 import {ToastContainer} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 
+import { GrLogout,GrLogin } from "react-icons/gr";
 
 // import {
 //   container,
@@ -39,6 +40,33 @@ const Layout = ({pageTitle, children }:{pageTitle:string; children:any}) => {
             </Link>
             
           </li>
+          <li className="navLinkItem">
+          
+            <Link href="/api/auth/signout"
+            className="item"
+            title="Sair"
+            onClick={(event) => {
+              event.preventDefault();
+              signOut();
+            }}
+          >
+            <GrLogout size="22px" aria-label="Sair" />
+          </Link>
+       
+              
+                        
+          </li>
+
+          <li className="navLinkItem">
+          
+          <Link  href="/api/auth/signin" title="Entrar">
+         <GrLogin size="22px" aria-label="Entrar" />
+       
+        </Link>
+     
+            
+                      
+        </li>
         </ul>
 
       </nav>
