@@ -1,9 +1,12 @@
 import Layout from "src/components/layout";
 import { useZorm } from "react-zorm";
-import { userSchema, UserSchema } from "../components/schemas/userSchema";
+import { userSchema, UserSchema } from "../../user/schemas/userSchema";
 import { z } from "zod";
 import axios from "axios";
 import useAxios from "axios-hooks";
+
+
+
 
 const signupSchema = userSchema
   .extend({
@@ -15,7 +18,7 @@ const signupSchema = userSchema
   });
 
 export function SignUpForm() {
-  const [{}, execute] = useAxios<UserSchema, UserSchema>(
+  const [{data, loading}, execute] = useAxios<UserSchema, UserSchema>(
     {
       url: "/api/signup",
       method: "POST",
@@ -34,7 +37,7 @@ export function SignUpForm() {
     },
   });
 
-  const disabled = validation?.success === false;
+  const disabled = validation?.success === false || loading;
 
   return (
     <Layout pageTitle="Cadastro de usuário">
@@ -45,6 +48,7 @@ export function SignUpForm() {
           placeholder="Nome"
           className={`signup-field ${errors.name("error")}`}
           name={fields.name()}
+          disabled={loading}
         />
         {errors.name((error) => (
           <ErrorMessage message={error.message} />
@@ -54,6 +58,7 @@ export function SignUpForm() {
           placeholder="Sobrenome"
           className={`signup-field ${errors.surname("error")}`}
           name={fields.surname()}
+          disabled={loading}
         />
         {errors.surname((error) => (
           <ErrorMessage message={error.message} />
@@ -63,6 +68,7 @@ export function SignUpForm() {
           placeholder="Email"
           className={`signup-field ${errors.email("error")}`}
           name={fields.email()}
+          disabled={loading}
         />
         {errors.email((error) => (
           <ErrorMessage message={error.message} />
@@ -72,6 +78,7 @@ export function SignUpForm() {
           placeholder="Senha"
           className={`signup-field ${errors.password("error")}`}
           name={fields.password()}
+          disabled={loading}
         />
         {errors.password((error) => (
           <ErrorMessage message={error.message} />
@@ -81,6 +88,7 @@ export function SignUpForm() {
           placeholder="Confirmar Senha"
           className={`signup-field ${errors.confirmPassword("error")}`}
           name={fields.confirmPassword()}
+          disabled={loading}
         />
         {errors.confirmPassword((error) => (
           <ErrorMessage message={error.message} />
@@ -126,9 +134,12 @@ export function SignUpForm() {
             }
 
             .signup-submit:disabled {
-              background-color: rgba(0, 0, 0, 0.2);
+              background-color: rgba(0, 0, 0, 0.4);
               color: #ccc;
               border-color: #ccc;
+            }
+            .signup-field:disabled{
+              border-color:#ccc;
             }
           `}
         </style>

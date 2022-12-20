@@ -1,6 +1,6 @@
 import Layout from "src/components/layout";
 import { useZorm } from "react-zorm";
-import { userSchema, UserSchema } from "../components/schemas/userSchema";
+import { userSchema, UserSchema } from "../../user/schemas/userSchema";
 import {z} from "zod";
 import axios from "axios";
 import useAxios from "axios-hooks";
