@@ -2,11 +2,16 @@ import Layout from "src/components/layout";
 import { useZorm } from "react-zorm";
 import { userSchema, UserSchema } from "../../user/schemas/userSchema";
 import { z } from "zod";
-import axios from "axios";
 import useAxios from "axios-hooks";
+import {toast} from "react-toastify";
+import { useRouter } from "next/router";
 
+const texts = {
 
+  submitSuccess: 'Conta criada com Sucesso',
+  submitFailure: 'Houve um erro ao criar sua conta'
 
+}
 
 const signupSchema = userSchema
   .extend({
@@ -18,6 +23,7 @@ const signupSchema = userSchema
   });
 
 export function SignUpForm() {
+  const router =useRouter();
   const [{data, loading}, execute] = useAxios<UserSchema, UserSchema>(
     {
       url: "/api/signup",
@@ -31,9 +37,16 @@ export function SignUpForm() {
   const { ref, fields, errors, validation } = useZorm("signup", signupSchema, {
     async onValidSubmit(event) {
       event.preventDefault();
-      await execute({
+     const { data } = await execute({
         data: event.data,
       });
+      if (data.user){
+        toast(texts.submitSuccess),
+        router.push("/")
+      }else{
+        toast(texts.submitFailure);
+
+      }
     },
   });
 

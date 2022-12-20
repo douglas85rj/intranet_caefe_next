@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Footer } from "./Footer";
-
+import {ToastContainer} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 
 
 // import {
@@ -43,7 +44,8 @@ const Layout = ({pageTitle, children }:{pageTitle:string; children:any}) => {
       </nav>
       <main>
       <h1 className="heading">{pageTitle}</h1>
-        {children}        
+        {children} 
+        <ToastContainer/>       
         <Footer />
       </main>
     </div>
