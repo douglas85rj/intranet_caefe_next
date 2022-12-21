@@ -11,5 +11,5 @@ import type {
     res: NextApiResponse | GetServerSidePropsContext["res"]
   ) {
     return getSession();
-    //return unstable_getServerSession(req, res, authOptions);
+
   }

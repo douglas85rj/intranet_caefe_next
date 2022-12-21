@@ -6,7 +6,7 @@ import {
   credentialsUserSchema,
   CredentialsUserSchema,
 } from "./schemas/credentialsUserSchema";
-
+import { googleUserSchema, GoogleUserSchema } from "./schemas/googleUserSchema";
 
 export type { User } from "@prisma/client";
 
@@ -44,13 +44,16 @@ export async function create(
 ) {
   let userValidation: SafeParseReturnType<
     User,
-    CredentialsUserSchema 
+    CredentialsUserSchema | GoogleUserSchema
   >;
 
   switch (user?.provider) {
     case allowedProviders.credentials:
       userValidation = await credentialsUserSchema.safeParseAsync(user);
-      break;   
+      break;
+    case allowedProviders.google:
+      userValidation = await googleUserSchema.safeParseAsync(user);
+      break;
     default:
       return {
         errors: [],

@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Footer } from "./Footer";
 import {ToastContainer} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
-
+import { signOut, useSession } from "next-auth/react";
 import { GrLogout,GrLogin } from "react-icons/gr";
 
 // import {

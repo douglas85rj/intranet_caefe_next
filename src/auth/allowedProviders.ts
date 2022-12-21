@@ -3,7 +3,7 @@ export type AllowedProvider =
 
 export const allowedProviders = {
   credentials: "credentials",
-  
+  google: "google",
 } as const;
 
 export const allowedProvidersList: string[] = Object.values(allowedProviders);
