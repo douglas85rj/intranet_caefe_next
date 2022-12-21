@@ -16,7 +16,7 @@ import { GrLogout,GrLogin } from "react-icons/gr";
 
 const Layout = ({pageTitle, children }:{pageTitle:string; children:any}) => {
   
-
+  const { data, status } = useSession();
   return (
     <div className="container">
       <header className="siteTile"></header>
